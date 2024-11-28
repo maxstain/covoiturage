@@ -18,8 +18,9 @@ public class ServiceUser implements IService {
     }
 
     public void truncate() {
+        String req = "truncate table users";
         try {
-            ste.executeUpdate("truncate table users");
+            ste.executeUpdate(req);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -27,9 +28,12 @@ public class ServiceUser implements IService {
 
     @Override
     public void ajout(User newUser) {
+        String req = "insert into users (nom, prenom, age) values ('" +
+                newUser.getNom() + "', '" +
+                newUser.getPrenom() + "', " +
+                newUser.getAge() + ")";
         try {
-            String req = "insert into users (nom, prenom, age) values ('" + newUser.getNom() + "', '" + newUser.getPrenom() + "', " + newUser.getAge() + ")";
-            int res = ste.executeUpdate(req);
+            ste.executeUpdate(req);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -37,14 +41,19 @@ public class ServiceUser implements IService {
 
     @Override
     public void afficher() {
+        String req = "select * from users";
         try {
-            ResultSet res = ste.executeQuery("select * from users");
-            while (res.next()) {
-                System.out.println("ID: " + res.getInt("id") +
-                        "\nNom: " + res.getString("nom") +
-                        "\nPrenom: " + res.getString("prenom") +
-                        "\nAge: " + res.getInt("age")
-                );
+            if (getSize() == 0) {
+                System.out.println("Aucun utilisateur trouvé");
+            } else {
+                ResultSet res = ste.executeQuery(req);
+                while (res.next()) {
+                    System.out.println("ID: " + res.getInt("id") +
+                            "\nNom: " + res.getString("nom") +
+                            "\nPrenom: " + res.getString("prenom") +
+                            "\nAge: " + res.getInt("age")
+                    );
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -53,8 +62,13 @@ public class ServiceUser implements IService {
 
     @Override
     public void modifier(User user) {
+        String req = "update users set nom = '" +
+                user.getNom() + "', prenom = '" +
+                user.getPrenom() + "', age= '" +
+                user.getAge() + "', where id = '" +
+                user.getId() + "'";
         try {
-            ste.executeUpdate("update users set nom to 'Ammar'" + " where id = " + user.getId());
+            ste.executeUpdate(req);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -62,12 +76,19 @@ public class ServiceUser implements IService {
 
     @Override
     public void supprimer(User user) {
+        String req = "delete from users where id = " + user.getId();
+        try {
+            ste.executeUpdate(req);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
     public int getSize() {
+        String req = "select count(*) from users";
         try {
-            ResultSet result = ste.executeQuery("select count(*) from users");
+            ResultSet result = ste.executeQuery(req);
             while (result.next()) {
                 size = result.getInt(1);
             }
