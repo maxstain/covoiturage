@@ -71,8 +71,7 @@ public class ServiceUser implements IService {
 
     public int getSize() {
         try {
-
-            ResultSet result = ste.executeQuery("SELECT count(*) FROM users");
+            ResultSet result = ste.executeQuery("select count(*) from users");
             while (result.next()) {
                 size = result.getInt(1);
             }
