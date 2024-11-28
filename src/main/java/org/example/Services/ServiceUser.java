@@ -41,7 +41,7 @@ public class ServiceUser implements IService {
 
     @Override
     public void afficher() {
-        String req = "select * from users";
+        String req = "select id, nom, prenom, age from users";
         try {
             if (getSize() == 0) {
                 System.out.println("Aucun utilisateur trouvé");
@@ -65,8 +65,7 @@ public class ServiceUser implements IService {
         String req = "update users set nom = '" +
                 user.getNom() + "', prenom = '" +
                 user.getPrenom() + "', age= '" +
-                user.getAge() + "', where id = '" +
-                user.getId() + "'";
+                user.getAge() + "' where id = " + user.getId();
         try {
             ste.executeUpdate(req);
         } catch (SQLException e) {

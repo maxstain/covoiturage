@@ -15,7 +15,9 @@ public class Main {
         User user = new User(_serviceUser.getSize()+1, "Doe", "John", 25);
         _serviceUser.ajout(user);
         _serviceUser.afficher();
+        user.setAge(30);
         _serviceUser.modifier(user);
         _serviceUser.afficher();
+        _serviceUser.truncate();
     }
 }
