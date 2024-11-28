@@ -2,10 +2,6 @@ package org.example;
 
 import org.example.Controllers.UserController;
 import org.example.DAO.User;
-import org.example.Services.ServiceUser;
-import org.example.Utils.DatabaseConnection;
-
-import java.sql.*;
 
 public class Main {
 
