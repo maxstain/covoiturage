@@ -28,11 +28,7 @@ public class ServiceUser implements IService {
     @Override
     public void ajout(User newUser) {
         try {
-            String req = "insert into users (nom, prenom, age) values (" +
-                    newUser.getNom() + ", " +
-                    newUser.getPrenom() + ", " +
-                    newUser.getAge()
-                    + ")";
+            String req = "insert into users (nom, prenom, age) values ('" + newUser.getNom() + "', '" + newUser.getPrenom() + "', " + newUser.getAge() + ")";
             int res = ste.executeUpdate(req);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
