@@ -1,8 +1,6 @@
 package org.example.Services;
 
-import org.example.Models.User;
-
-import java.sql.*;
+import org.example.DAO.User;
 
 public interface IService {
     public void ajout(User newUser);

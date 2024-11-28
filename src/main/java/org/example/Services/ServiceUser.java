@@ -1,6 +1,6 @@
 package org.example.Services;
 
-import org.example.Models.User;
+import org.example.DAO.User;
 
 import java.sql.*;
 
