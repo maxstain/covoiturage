@@ -8,7 +8,7 @@ public class Main {
     private static final UserController _userController = new UserController();
 
     public static void main(String[] args) {
-        User user = new User(_userController.getSize()+1, "Doe", "John", 25);
+        User user = new User(_userController.getSize() + 1, "nom", "prenom", 20, "email", "motDePasse", "type");
         _userController.ajout(user);
         _userController.afficher();
         user.setAge(30);
