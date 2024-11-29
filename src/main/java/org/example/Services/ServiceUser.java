@@ -28,10 +28,13 @@ public class ServiceUser implements IService {
 
     @Override
     public void ajout(User newUser) {
-        String req = "insert into users (nom, prenom, age) values ('" +
+        String req = "insert into users (nom, prenom, age, email, password, type) values ('" +
                 newUser.getNom() + "', '" +
-                newUser.getPrenom() + "', " +
-                newUser.getAge() + ")";
+                newUser.getPrenom() + "', '" +
+                newUser.getAge() + "', '" +
+                newUser.getEmail() + "', '" +
+                newUser.getMotDePasse() + "', '" +
+                newUser.getType() + "')";
         try {
             ste.executeUpdate(req);
         } catch (SQLException e) {
@@ -41,7 +44,7 @@ public class ServiceUser implements IService {
 
     @Override
     public void afficher() {
-        String req = "select id, nom, prenom, age from users";
+        String req = "select id, nom, prenom, age, email, password, type from users";
         try {
             if (getSize() == 0) {
                 System.out.println("Aucun utilisateur trouvé");
@@ -51,7 +54,10 @@ public class ServiceUser implements IService {
                     System.out.println("ID: " + res.getInt("id") +
                             "\nNom: " + res.getString("nom") +
                             "\nPrenom: " + res.getString("prenom") +
-                            "\nAge: " + res.getInt("age")
+                            "\nAge: " + res.getInt("age") +
+                            "\nEmail: " + res.getString("email") +
+                            "\nMot de passe: " + res.getString("password") +
+                            "\nType: " + res.getString("type")
                     );
                 }
             }
@@ -65,7 +71,11 @@ public class ServiceUser implements IService {
         String req = "update users set nom = '" +
                 user.getNom() + "', prenom = '" +
                 user.getPrenom() + "', age= '" +
-                user.getAge() + "' where id = " + user.getId();
+                user.getAge() + "', email = '" +
+                user.getEmail() + "', password = '" +
+                user.getMotDePasse() + "', type = '" +
+                user.getType() + "' where id = " +
+                user.getId();
         try {
             ste.executeUpdate(req);
         } catch (SQLException e) {
