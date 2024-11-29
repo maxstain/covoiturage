@@ -1,10 +1,10 @@
-package org.example.Services;
+package org.example.Services.User;
 
 import org.example.DAO.User;
 
 import java.sql.*;
 
-public class ServiceUser implements IService {
+public class ServiceUser implements IServiceUser {
 
     private Statement ste;
     int size = 0;

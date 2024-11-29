@@ -1,7 +1,7 @@
 package org.example.Controllers;
 
 import org.example.DAO.User;
-import org.example.Services.ServiceUser;
+import org.example.Services.User.ServiceUser;
 import org.example.Utils.DatabaseConnection;
 
 import java.sql.Connection;
