@@ -25,8 +25,12 @@ public class User {
         this.prenom = prenom;
         this.age = age;
         this.email = email;
-        this.motDePasse = motDePasse;
+        this.motDePasse = hashPassword(motDePasse);
         this.type = type;
+    }
+
+    public static String hashPassword(String motDePasse) {
+        return motDePasse.hashCode() + "";
     }
 
     public int getId() {
