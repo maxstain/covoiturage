@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.Controllers.UserController;
 import org.example.DAO.User;
+import org.example.Utils.PasswordHash;
 
 public class Main {
 
@@ -9,12 +10,12 @@ public class Main {
 
     public static void main(String[] args) {
         User user = new User(_userController.getSize() + 1,
-                "Doe",
-                "John",
+                "Chabchoub",
+                "Firas",
                 25,
-                "johndoe25@gmail.com",
-                "johndoe123",
-                "Conducteur"
+                "firaschabchoub@gmail.com",
+                PasswordHash.hashPassword("123456"),
+                "Admin"
         );
         _userController.truncate();
         _userController.ajout(user);
